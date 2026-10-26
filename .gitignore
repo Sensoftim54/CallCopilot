@@ -1,0 +1,12 @@
+# personal data — never commit
+about.md
+context.md
+config.json
+logs/
+
+# local environment and downloads
+.venv/
+tools/
+dist/
+__pycache__/
+*.pyc

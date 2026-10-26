@@ -1,0 +1,5 @@
+faster-whisper==1.2.1
+PyAudioWPatch==0.2.12.9
+PyQt6==6.11.0
+numpy==2.5.4
+keyboard==0.13.5
