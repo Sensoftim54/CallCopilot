@@ -37,7 +37,26 @@ what is missing: Python 3.12, the Visual C++ Runtime, Python libraries, Node.js 
 and the speech recognition model. It helps you sign in to ChatGPT/Claude and creates desktop and Start menu
 shortcuts. Running it again updates the app and keeps your About me, Context, settings and logs.
 
-> Windows SmartScreen may warn about an unsigned app: click **More info → Run anyway**.
+### If Windows says it is a virus
+
+The installer is not code-signed (a certificate costs money), and it downloads Python, Node.js and the CLIs
+and runs PowerShell — exactly what antivirus heuristics are wary of. So Windows may complain even though the
+file is clean. The code is open: everything the installer does is in [`installer/setup.ps1`](installer/setup.ps1).
+
+1. **Make sure the file is the real one.** Download it only from this repository's Releases and compare its
+   checksum with the one in the release notes (PowerShell):
+   ```powershell
+   Get-FileHash .\CallCopilot-Setup.exe -Algorithm SHA256
+   ```
+   If the hash differs — do not run the file.
+2. **“Windows protected your PC” (SmartScreen)** — click **More info → Run anyway**.
+3. **Microsoft Defender deleted or blocked the file** — open **Windows Security → Virus & threat protection →
+   Protection history**, find the entry for `CallCopilot-Setup.exe`, check that the path is your download and
+   choose **Actions → Allow on device** (or **Restore**). Do not turn the antivirus off.
+4. **The browser refuses to keep the download** — in Edge/Chrome open Downloads, click the file's **⋯** menu →
+   **Keep** → **Keep anyway**.
+5. **Still blocked?** Download `CallCopilot-Setup.zip` instead, unpack it and run `Setup.cmd` — it is the same
+   installer as plain scripts you can read before running. Or install from source (below).
 
 ### From source
 
